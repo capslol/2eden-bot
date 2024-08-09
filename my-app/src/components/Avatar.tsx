@@ -1,33 +1,91 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import borderSVG from '../assets/images/avatar-frame.svg'
+import avatar from '../assets/images/avatar.svg'
+import rankIcons, { Rank } from '../assets/icons/icons';
+import {colors} from "../styles/styles";
+import {useStore} from "../store/store";
+
+const Avatar: React.FC = () => {
+    const {userName, currentRank,ranks, incrementTokens} = useStore()
+    const rank = ranks[currentRank].name as Rank;
+    return (
+        <>
+            <AvatarContainer>
+                <AvatarFrame onClick={incrementTokens}>
+                    <AvatarImage src={avatar} alt="Avatar"/>
+                    <UserNameContainer>{userName}</UserNameContainer>
+                </AvatarFrame>
+                <RankContainer>Rank: «{rank}»</RankContainer>
+                <RankImage src={rankIcons[rank]}/>
+            </AvatarContainer>
+        </>
+
+
+
+
+    );
+};
+
+
+const AvatarFrame = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 148.21px; /* Задайте нужный размер для аватара */
+  height: 127.73px; /* Задайте нужный размер для аватара */
+  background-image: url(${borderSVG});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%; /* Делаем аватар круглым */
+  position: relative; /* Позиционируем контейнер относительно */
+  cursor: pointer;
+`;
 const AvatarContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  flex-direction: column;
+  position: relative;
+  
 `;
 
 const AvatarImage = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 3px solid #00ff00;
+  width: 83.81px; /* Размер аватара внутри контейнера */
+  height: 83.81px; /* Размер аватара внутри контейнера */
+  border-radius: 50%; /* Делает изображение круглым */
+`;
+const RankImage = styled.img`
+  width: 41.14px; 
+  height: 60px; 
+  margin-top: 6.26px;
 `;
 
-const RankName = styled.div`
-  margin-top: 10px;
-  color: #fff;
-  font-size: 18px;
+const UserNameContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 120px;
+  height: 32px;
+  background: ${colors.background};
+  border: 1px solid ${colors.lightGreen};
+  border-radius: 100px;
+  color: ${colors.primaryText};
+  font-weight: 700;
+  font-size: 16px;
 `;
 
-const Avatar: React.FC = () => {
-    return (
-        <AvatarContainer>
-            <AvatarImage src="path_to_avatar_image" alt="Avatar" />
-            <RankName>Rank: Acolyte</RankName>
-        </AvatarContainer>
-    );
-};
+const RankContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${colors.secondaryText};
+  font-size: 10px;
+  font-weight: lighter;
+`;
 
 export default Avatar;
