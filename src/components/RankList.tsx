@@ -5,7 +5,6 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import styled from 'styled-components';
-import rankIcons, {Rank} from '../assets/icons/icons';
 import {useStore} from "../store/store";
 
 import SwiperButtonNext from "./SwiperButtonNext";
@@ -17,7 +16,7 @@ const RankList: React.FC = () => {
     const {currentRank} = useStore();
 
     const {currentRankToDisplay, ranks} = useRankDisplayStore();
-    const rankName = ranks[currentRank].name as Rank;
+    const rankName = ranks[currentRank].name
 
     return (
         <RankContainer>
@@ -31,7 +30,7 @@ const RankList: React.FC = () => {
                 {ranks.map((rank) => (
                     <SwiperSlide key={rank.name}>
                         <RankItem isActive={rank.name === rankName}>
-                            <img src={rankIcons[rank.name as Rank]}/>
+                            <img src={rank.image}/>
                         </RankItem>
                     </SwiperSlide>
                 ))}

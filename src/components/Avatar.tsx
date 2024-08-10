@@ -3,13 +3,12 @@ import styled from 'styled-components';
 
 import borderSVG from '../assets/images/avatar-frame.svg'
 import avatar from '../assets/images/avatar.svg'
-import rankIcons, {Rank} from '../assets/icons/icons';
 import {colors} from "../styles/styles";
 import {useStore} from "../store/store";
 
 const Avatar: React.FC = () => {
     const {userName, currentRank, ranks, increaseBalance} = useStore()
-    const rank = ranks[currentRank].name as Rank;
+    const rank = ranks[currentRank]
     return (
         <>
             <AvatarContainer>
@@ -17,8 +16,8 @@ const Avatar: React.FC = () => {
                     <AvatarImage src={avatar} alt="Avatar"/>
                     <UserNameContainer>{userName}</UserNameContainer>
                 </AvatarFrame>
-                <RankContainer>Rank: «{rank}»</RankContainer>
-                <RankImage src={rankIcons[rank]}/>
+                <RankContainer>Rank: «{rank.name}»</RankContainer>
+                <RankImage src={rank.image}/>
             </AvatarContainer>
         </>
     );

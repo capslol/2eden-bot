@@ -1,9 +1,16 @@
 import create from 'zustand';
 import { Swiper } from 'swiper';
 
+import AcolyteIcon from '../assets/icons/acolyte.svg';
+import DeaconIcon from '../assets/icons/deacon.svg';
+import PriestIcon from '../assets/icons/priest.svg';
+import BishopIcon from '../assets/icons/bishop.svg';
+import ArchbishopIcon from '../assets/icons/archbishop.svg';
+
 export interface UserRank {
     name: string;
     levels: UserRankLevel[];
+    image: string;
 }
 
 interface UserRankLevel {
@@ -32,6 +39,7 @@ const ranks: UserRank[] = [
         levels: [
             { impactForce: 0, maxEnergy: 1000, recovery: 5 },
         ],
+        image: AcolyteIcon
     },
     {
         name: 'Deacon',
@@ -39,6 +47,7 @@ const ranks: UserRank[] = [
             { impactForce: 200, maxEnergy: 2000, recovery: 10 },
             { impactForce: 250, maxEnergy: 2500, recovery: 12 },
         ],
+        image: DeaconIcon
     },
     {
         name: 'Priest',
@@ -47,6 +56,7 @@ const ranks: UserRank[] = [
             { impactForce: 350, maxEnergy: 3500, recovery: 18 },
             { impactForce: 400, maxEnergy: 4000, recovery: 20 },
         ],
+        image: PriestIcon
     },
     {
         name: 'Bishop',
@@ -54,6 +64,7 @@ const ranks: UserRank[] = [
             { impactForce: 450, maxEnergy: 4000, recovery: 20 },
             { impactForce: 500, maxEnergy: 4500, recovery: 22 },
         ],
+        image: BishopIcon
     },
     {
         name: 'Archbishop',
@@ -62,6 +73,7 @@ const ranks: UserRank[] = [
             { impactForce: 600, maxEnergy: 5500, recovery: 30 },
             { impactForce: 650, maxEnergy: 6000, recovery: 35 },
         ],
+        image: ArchbishopIcon
     },
 ];
 
