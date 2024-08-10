@@ -10,10 +10,7 @@ import Stats from "./components/Stats";
 
 import Footer from "./components/Footer";
 
-
-
 const App: React.FC = () => {
-
     return (
         <>
             <GlobalStyles/>

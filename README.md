@@ -23,15 +23,29 @@ To get started with the project, follow these steps:
     git clone https://github.com/capslol/2eden-bot.git
     ```
 
+2. Navigate to the project directory:
+    ```bash
+    cd 2eden-bot
+    ```
 
-2. Install dependencies:
+3. Install dependencies using `yarn`:
     ```bash
     yarn install
     ```
 
-3. Start the development server:
+   Or, if you prefer `npm`:
+    ```bash
+    npm install
+    ```
+
+4. Start the development server:
     ```bash
     yarn start
+    ```
+
+   Or, if you prefer `npm`:
+    ```bash
+    npm start
     ```
 
 Enjoy tapping and upgrading your rank! 🎉
@@ -46,5 +60,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact 📧
 
-For any questions connect with me on Telegram: [@sobored66](https://t.me/sobored66).
-
+For any questions, connect with me on Telegram: [@sobored66](https://t.me/sobored66).
