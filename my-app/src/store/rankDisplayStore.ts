@@ -1,5 +1,5 @@
 import create from 'zustand';
-import {UserRank, useStore} from './store'; // Импортируйте основной стор
+import {UserRank, useStore} from './store';
 
 interface RankDisplayState {
     currentRankToDisplay: number;
@@ -8,7 +8,6 @@ interface RankDisplayState {
     setCurrentRankToDisplay: (index: number) => void;
     setCurrentLevelToDisplay: (index: number) => void;
     upgradeLevelOrRank: () => void;
-
 }
 
 export const useRankDisplayStore = create<RankDisplayState>((set) => ({
@@ -26,37 +25,18 @@ export const useRankDisplayStore = create<RankDisplayState>((set) => ({
 
 
         if (state.currentRankToDisplay === lastRankIndex && state.currentLevelToDisplay === lastLevelIndex) {
-            console.log('усл 1 ')
             // Достигнут последний ранг и последний уровень, ничего не делаем
             return state;
         } else if (state.currentLevelToDisplay < lastLevelIndex) {
-            console.log('усл 2 ')
             // Увеличиваем уровень, если не достигли последнего уровня
             return { currentLevelToDisplay: state.currentLevelToDisplay + 1 };
         } else {
-            console.log('усл 3 ')
             // Достигнут последний уровень, переходим к следующему рангу и сбрасываем уровень на 0
             return {
                 currentRankToDisplay: state.currentRankToDisplay + 1,
                 currentLevelToDisplay: 1
             };
         }
-
-
-
-        // if (currentLevelToDisplay < rank.levels.length) {
-        //     console.log('if')
-        //     // Увеличиваем уровень, если не достигли последнего уровня
-        //     return { currentLevelToDisplay: currentLevelToDisplay + 1 };
-        // } else {
-        //     console.log('else')
-        //     // Если последний ранг, просто сбрасываем уровень
-        //     return {
-        //         currentRankToDisplay: currentRankToDisplay + 1,
-        //         currentLevelToDisplay: 1,
-        //     };
-        // }
-
 
     })
 }));

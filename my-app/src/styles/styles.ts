@@ -50,7 +50,6 @@ export const Container = styled.div`
   padding: 0 10px;
 `;
 
-
 export const PrimaryButton = styled.div`
   display: flex;
   width: 32px;

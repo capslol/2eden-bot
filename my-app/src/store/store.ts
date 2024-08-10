@@ -1,9 +1,8 @@
 import create from 'zustand';
 
-// Интерфейс для характеристик ранга
 export interface UserRank {
     name: string;
-    levels: UserRankLevel[]; // Массив уровней с улучшениями
+    levels: UserRankLevel[];
 }
 
 interface UserRankLevel {
@@ -12,7 +11,6 @@ interface UserRankLevel {
     recovery: number;
 }
 
-// Интерфейс состояния хранилища
 interface StoreState {
     balance: number;
     userName: string;
@@ -25,7 +23,6 @@ interface StoreState {
     increaseBalance: () => void;
 }
 
-// Определение рангов с характеристиками
 const ranks: UserRank[] = [
     {
         name: 'Acolyte',
@@ -68,7 +65,7 @@ const ranks: UserRank[] = [
 export const useStore = create<StoreState>((set) => ({
     balance: 0,
     userName: 'Jugglerez',
-    currentRank: 0, //
+    currentRank: 0,
     currentLevel: 1,
     ranks,
     setCurrentRank: (rankIndex) => set({ currentRank: rankIndex, currentLevel: 1 }),

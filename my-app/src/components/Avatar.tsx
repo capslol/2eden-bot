@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import borderSVG from '../assets/images/avatar-frame.svg'
 import avatar from '../assets/images/avatar.svg'
-import rankIcons, { Rank } from '../assets/icons/icons';
+import rankIcons, {Rank} from '../assets/icons/icons';
 import {colors} from "../styles/styles";
 import {useStore} from "../store/store";
 
 const Avatar: React.FC = () => {
-    const {userName, currentRank,ranks, increaseBalance} = useStore()
+    const {userName, currentRank, ranks, increaseBalance} = useStore()
     const rank = ranks[currentRank].name as Rank;
     return (
         <>
@@ -29,14 +29,14 @@ const AvatarFrame = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 148.21px; /* Задайте нужный размер для аватара */
-  height: 127.73px; /* Задайте нужный размер для аватара */
+  width: 148.21px; 
+  height: 127.73px; 
   background-image: url(${borderSVG});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 50%; /* Делаем аватар круглым */
-  position: relative; /* Позиционируем контейнер относительно */
+  border-radius: 50%; 
+  position: relative;
   cursor: pointer;
 `;
 const AvatarContainer = styled.div`
@@ -45,7 +45,6 @@ const AvatarContainer = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
-  
 `;
 
 const AvatarImage = styled.img`
@@ -53,9 +52,10 @@ const AvatarImage = styled.img`
   height: 83.81px; /* Размер аватара внутри контейнера */
   border-radius: 50%; /* Делает изображение круглым */
 `;
+
 const RankImage = styled.img`
-  width: 41.14px; 
-  height: 60px; 
+  width: 41.14px;
+  height: 60px;
   margin-top: 6px;
 `;
 

@@ -10,28 +10,20 @@ const SwiperButtonNext: React.FC = () => {
     const {currentRankToDisplay,currentLevelToDisplay,ranks,setCurrentLevelToDisplay, setCurrentRankToDisplay } = useRankDisplayStore();
     const handlerGoNext = () => {
         const rank = ranks[currentRankToDisplay];
-
         const lastRankIndex = ranks.length - 1;
         const lastLevelIndex = rank.levels.length;
 
-
         if (currentRankToDisplay === lastRankIndex && currentLevelToDisplay === lastLevelIndex) {
-            console.log('усл 1 ')
-            // Достигнут последний ранг и последний уровень, ничего не делаем
             return
         } else if (currentLevelToDisplay < lastLevelIndex) {
-            console.log('усл 2 ')
             // Увеличиваем уровень, если не достигли последнего уровня
             setCurrentLevelToDisplay(currentLevelToDisplay + 1)
         } else {
-            console.log('усл 3 ')
             // Достигнут последний уровень, переходим к следующему рангу и сбрасываем уровень на 0
             setCurrentRankToDisplay(currentRankToDisplay + 1)
             setCurrentLevelToDisplay(1)
             swiper.slideNext()
-
         }
-
     };
     return (
         <NavigationButtonNext className="swiper-button-next" onClick={handlerGoNext}></NavigationButtonNext>
@@ -55,7 +47,5 @@ const NavigationButtonNext = styled.button`
     height: 40px;
     background-repeat: no-repeat;
   }
-
-
 `;
 export default SwiperButtonNext

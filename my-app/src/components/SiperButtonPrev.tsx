@@ -12,26 +12,18 @@ const SwiperButtonPrev: React.FC = () => {
 
         const firstRankIndex = 0;
         const firstLevelIndex = 1;
-        const lastLevelIndex = rank.levels.length;
 
         if (currentRankToDisplay === firstRankIndex && currentLevelToDisplay === firstLevelIndex) {
             console.log('усл 1 ')
             // Достигнут первый ранг и первый уровень, ничего не делаем
             return;
         } else if (currentLevelToDisplay > firstLevelIndex) {
-            console.log('currentLevelToDisplay',currentLevelToDisplay)
-            console.log('firstLevelIndex',firstLevelIndex)
-            console.log('усл 2 ')
-            // Уменьшаем уровень, если не достигли первого уровня
             setCurrentLevelToDisplay(currentLevelToDisplay - 1 )
         } else {
-            console.log('усл 3 ')
-            // Достигнут первый уровень, переходим к предыдущему рангу и устанавливаем уровень на последний уровень
             const prevRankIndex = currentRankToDisplay - 1;
             const lastLevelOfPrevRank = ranks[prevRankIndex].levels.length;
             setCurrentRankToDisplay(prevRankIndex)
             setCurrentLevelToDisplay(lastLevelOfPrevRank)
-
             swiper.slidePrev()
         }
     };

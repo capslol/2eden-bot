@@ -4,22 +4,21 @@ import {fonts, colors, Container} from "../styles/styles";
 import backIcon from '../assets/images/back-icon.svg';
 import MenuIcon from '../assets/images/Menu.svg';
 
-
 const Header: React.FC = () => {
     return (
 
         <HeaderContainer>
-                <LeftSection>
-                    <Icon src={backIcon} alt="Left Icon"/>
-                    <BackText>Back</BackText>
-                </LeftSection>
-                <CenterSection>
-                    <Title>2eden</Title>
-                    <Subtitle>Bot</Subtitle>
-                </CenterSection>
-                <RightSection>
-                    <Image src={MenuIcon} alt="Right Image"/>
-                </RightSection>
+            <LeftSection>
+                <Icon src={backIcon} alt="Left Icon"/>
+                <BackText>Back</BackText>
+            </LeftSection>
+            <CenterSection>
+                <Title>2eden</Title>
+                <Subtitle>Bot</Subtitle>
+            </CenterSection>
+            <RightSection>
+                <Image src={MenuIcon} alt="Right Image"/>
+            </RightSection>
         </HeaderContainer>
 
 
@@ -74,7 +73,5 @@ const RightSection = styled.div`
 
 const Image = styled.img`
 `;
-
-
 
 export default Header;
