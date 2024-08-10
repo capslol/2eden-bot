@@ -1,12 +1,23 @@
-import  React  from 'react';
+import React, {useEffect} from 'react';
 import { useSwiper } from 'swiper/react';
 import styled from "styled-components";
 import leftArrow from "../assets/images/arrow_left.svg";
 import {useRankDisplayStore} from "../store/rankDisplayStore";
+import {useStore} from "../store/store";
 
 const SwiperButtonPrev: React.FC = () => {
     const swiper = useSwiper();
+    const {setSwiperInstance} = useStore()
+
+
+
+    useEffect(() => {
+        setSwiperInstance(swiper)
+    }, [setSwiperInstance])
+
     const { currentRankToDisplay, currentLevelToDisplay,ranks, setCurrentLevelToDisplay, setCurrentRankToDisplay } = useRankDisplayStore();
+
+
     const handlerGoPrev = () => {
         const rank = ranks[currentRankToDisplay];
 

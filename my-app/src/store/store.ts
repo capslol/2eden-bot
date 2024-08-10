@@ -1,4 +1,5 @@
 import create from 'zustand';
+import { Swiper } from 'swiper';
 
 export interface UserRank {
     name: string;
@@ -21,6 +22,8 @@ interface StoreState {
     setCurrentRank: (rankIndex: number) => void;
     setCurrentLevel: (level: number) => void;
     increaseBalance: () => void;
+    swiperInstance: Swiper | null;
+    setSwiperInstance: (swiper: Swiper) => void
 }
 
 const ranks: UserRank[] = [
@@ -68,6 +71,8 @@ export const useStore = create<StoreState>((set) => ({
     currentRank: 0,
     currentLevel: 1,
     ranks,
+    swiperInstance: null,
+    setSwiperInstance: (swiper) => set({ swiperInstance: swiper }),
     setCurrentRank: (rankIndex) => set({ currentRank: rankIndex, currentLevel: 1 }),
     setCurrentLevel: (level) => set({ currentLevel: level }),
     increaseBalance: () => set((state) => {
@@ -78,7 +83,7 @@ export const useStore = create<StoreState>((set) => ({
         };
     }),
     upgradeRank: () => set((state) => {
-        const { currentRank, currentLevel, balance, ranks } = state;
+        const { currentRank, currentLevel, balance, ranks,swiperInstance } = state;
         const rank = ranks[currentRank];
         const lastRankIndex = state.ranks.length - 1;
         const lastLevelIndex = rank.levels.length;
@@ -91,13 +96,17 @@ export const useStore = create<StoreState>((set) => ({
                 balance: balance - 2000
             };
         } else {
+            console.log(swiperInstance)
+            swiperInstance.slideTo(currentRank + 1)
             return {
                 currentRank: currentRank + 1,
                 currentLevel: 1,
                 balance: balance - 2000
+
             };
         }
     }),
+
 }));
 
 
