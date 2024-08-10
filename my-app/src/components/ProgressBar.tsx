@@ -14,12 +14,7 @@ interface ProgressBarProps {
 
 const ProgressBar: React.FC = () => {
     const {ranks, currentRank, currentLevel, upgradeRank} = useStore();
-    const totalLevels = ranks[currentRank].levels
-    console.log(currentLevel)
-
-    console.log(totalLevels)
-
-
+    const totalLevels = ranks[currentRank].levels.length
 
     const segments = Array.from({ length: totalLevels }, (_, index) => {
 

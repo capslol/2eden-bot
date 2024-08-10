@@ -1,32 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import {fonts, colors, Container} from "../styles/styles";
-import backIcon from '../assets/images/back-icon.svg';
-import MenuIcon from '../assets/images/Menu.svg';
 
+import RankIcon from '../assets/images/footer/rank-icon.svg';
+import leaderIcon from '../assets/images/footer/leader-icon.svg';
+import FrensIcon from '../assets/images/footer/frens-icon.svg';
+import TasksIcon from '../assets/images/footer/tasks-icon.svg';
+import HomeIcon from '../assets/images/footer/home-icon.svg';
 
-const Header: React.FC = () => {
+const Footer: React.FC = () => {
     return (
 
-        <HeaderContainer>
-                <LeftSection>
-                    <Icon src={backIcon} alt="Left Icon"/>
-                    <BackText>Back</BackText>
-                </LeftSection>
-                <CenterSection>
-                    <Title>2eden</Title>
-                    <Subtitle>Bot</Subtitle>
-                </CenterSection>
-                <RightSection>
-                    <Image src={MenuIcon} alt="Right Image"/>
-                </RightSection>
-        </HeaderContainer>
+        <FooterContainer>
+            <Icon src={HomeIcon}/>
+            <Icon src={TasksIcon}/>
+            <Icon src={RankIcon}/>
+            <Icon src={leaderIcon}/>
+            <Icon src={FrensIcon}/>
+        </FooterContainer>
 
 
     );
 };
 
-const HeaderContainer = styled.header`
+const FooterContainer = styled.footer`
   height: 86.37px;
   background-color: ${colors.backgroundBlack};
   display: flex;
@@ -42,7 +39,7 @@ const LeftSection = styled.div`
 `;
 
 const Icon = styled.img`
-  margin-right: 8px;
+  margin-right: 20px;
 `;
 
 const BackText = styled.span`
@@ -77,4 +74,4 @@ const Image = styled.img`
 
 
 
-export default Header;
+export default Footer;

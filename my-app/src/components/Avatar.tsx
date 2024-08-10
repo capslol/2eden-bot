@@ -8,12 +8,12 @@ import {colors} from "../styles/styles";
 import {useStore} from "../store/store";
 
 const Avatar: React.FC = () => {
-    const {userName, currentRank,ranks, incrementTokens} = useStore()
+    const {userName, currentRank,ranks, increaseBalance} = useStore()
     const rank = ranks[currentRank].name as Rank;
     return (
         <>
             <AvatarContainer>
-                <AvatarFrame onClick={incrementTokens}>
+                <AvatarFrame onClick={increaseBalance}>
                     <AvatarImage src={avatar} alt="Avatar"/>
                     <UserNameContainer>{userName}</UserNameContainer>
                 </AvatarFrame>
@@ -21,10 +21,6 @@ const Avatar: React.FC = () => {
                 <RankImage src={rankIcons[rank]}/>
             </AvatarContainer>
         </>
-
-
-
-
     );
 };
 
@@ -60,7 +56,7 @@ const AvatarImage = styled.img`
 const RankImage = styled.img`
   width: 41.14px; 
   height: 60px; 
-  margin-top: 6.26px;
+  margin-top: 6px;
 `;
 
 const UserNameContainer = styled.div`
@@ -68,7 +64,7 @@ const UserNameContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   width: 120px;
   height: 32px;
   background: ${colors.background};
@@ -86,6 +82,7 @@ const RankContainer = styled.div`
   color: ${colors.secondaryText};
   font-size: 10px;
   font-weight: lighter;
+  margin-top: 15px;
 `;
 
 export default Avatar;
