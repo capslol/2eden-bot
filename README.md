@@ -23,17 +23,13 @@ To get started with the project, follow these steps:
     git clone https://github.com/capslol/tap-tap.git
     ```
 
-2. Navigate to the project directory:
-    ```bash
-    cd my-app
-    ```
 
-3. Install dependencies:
+2. Install dependencies:
     ```bash
     yarn install
     ```
 
-4. Start the development server:
+3. Start the development server:
     ```bash
     yarn start
     ```
