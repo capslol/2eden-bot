@@ -24,6 +24,7 @@ interface StoreState {
     userName: string;
     currentRank: number;
     currentLevel: number;
+    tapPower: number;
     ranks: UserRank[];
     upgradeRank: () => void;
     setCurrentRank: (rankIndex: number) => void;
@@ -77,32 +78,34 @@ const ranks: UserRank[] = [
     },
 ];
 
-export const useStore = create<StoreState>((set) => ({
+export const useStore = create<StoreState>((set, get) => ({
     balance: 0,
     userName: 'Jugglerez',
     currentRank: 0,
     currentLevel: 1,
     ranks,
     swiperInstance: null,
+    tapPower: 1000 + ranks[0].levels[0].impactForce, // Устанавливаем начальное значение tapPower
     setSwiperInstance: (swiper) => set({ swiperInstance: swiper }),
-    setCurrentRank: (rankIndex) => set({ currentRank: rankIndex, currentLevel: 1 }),
+    setCurrentRank: (rankIndex) => set({ currentRank: rankIndex }),
     setCurrentLevel: (level) => set({ currentLevel: level }),
     increaseBalance: () => set((state) => {
         const { balance, ranks, currentRank, currentLevel } = state;
         const impactForce = ranks[currentRank].levels[currentLevel - 1].impactForce;
         return {
-            balance: balance + 1000 + impactForce
+            balance: balance + get().tapPower
         };
     }),
     upgradeRank: () => set((state) => {
         const { currentRank, currentLevel, balance, ranks,swiperInstance } = state;
         const rank = ranks[currentRank];
-        const lastRankIndex = state.ranks.length - 1;
+        const lastRankIndex = ranks.length - 1;
         const lastLevelIndex = rank.levels.length;
 
         if (currentRank === lastRankIndex && currentLevel === lastLevelIndex) {
             return state;
         } else if (currentLevel < lastLevelIndex) {
+            swiperInstance.slideTo(currentRank)
             return {
                 currentLevel: currentLevel + 1,
                 balance: balance - 2000
@@ -114,7 +117,6 @@ export const useStore = create<StoreState>((set) => ({
                 currentRank: currentRank + 1,
                 currentLevel: 1,
                 balance: balance - 2000
-
             };
         }
     }),

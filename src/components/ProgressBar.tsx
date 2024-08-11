@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {colors} from "../styles/styles";
 import {useStore} from "../store/store";
+import {useRankDisplayStore} from "../store/rankDisplayStore";
 
 interface ProgressBarProps {
     currentLevel: number; // Текущий уровень
@@ -10,13 +11,38 @@ interface ProgressBarProps {
 
 const ProgressBar: React.FC = () => {
     const {ranks, currentRank, currentLevel, upgradeRank} = useStore();
-    const totalLevels = ranks[currentRank].levels.length
+    const {currentRankToDisplay, currentLevelToDisplay, setCurrentLevelToDisplay,setCurrentRankToDisplay} = useRankDisplayStore();
+
+
+    const [totalLevels, setTotalLevels] = useState<number>(0);
+    const [currentLevelToShow, setCurrentLevelToShow] = useState<number>(0);
+
+
+    useEffect(() => {
+        const rankToDisplay = ranks[currentRankToDisplay];
+        if (rankToDisplay) {
+            setTotalLevels(rankToDisplay.levels.length);
+            setCurrentLevelToShow(currentLevelToDisplay);
+        }
+
+    }, [currentRankToDisplay, currentLevelToDisplay]);
+
+    useEffect(() => {
+        const rank = ranks[currentRank];
+        console.log(rank)
+        if (rank) {
+            setTotalLevels(rank.levels.length);
+            setCurrentLevelToShow(currentLevel);
+
+        }
+    }, [currentRank, currentLevel])
+
 
     const segments = Array.from({length: totalLevels}, (_, index) => {
         let status: 'completed' | 'current' | 'pending';
-        if (index < currentLevel - 1) {
+        if (index < currentLevelToShow - 1) {
             status = 'completed'; // Все уровни до текущего
-        } else if (index === currentLevel - 1) {
+        } else if (index === currentLevelToShow - 1) {
             status = 'current'; // Текущий уровень
         } else {
             status = 'pending'; // Оставшиеся уровни
@@ -61,11 +87,11 @@ const ProgressBarSegment = styled.div<{
   background-color: ${props => {
     switch (props.status) {
       case 'completed':
-        return colors.defaultProgressBar; 
+        return colors.defaultProgressBar;
       case 'current':
         return colors.activeProgressBar;
       case 'pending':
-        return colors.bgSecondary; 
+        return colors.bgSecondary;
       default:
         return colors.bgSecondary;
     }
@@ -75,7 +101,7 @@ const ProgressBarSegment = styled.div<{
   transition: background-color 0.3s ease;
 
   &:last-child {
-    margin-right: 0; 
+    margin-right: 0;
   }
 `;
 

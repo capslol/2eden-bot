@@ -19,7 +19,6 @@ const SwiperButtonPrev: React.FC = () => {
 
 
     const handlerGoPrev = () => {
-        const rank = ranks[currentRankToDisplay];
 
         const firstRankIndex = 0;
         const firstLevelIndex = 1;

@@ -11,8 +11,9 @@ interface RankDisplayState {
 }
 
 export const useRankDisplayStore = create<RankDisplayState>((set) => ({
-    currentRankToDisplay: useStore.getState().currentRank,
-    currentLevelToDisplay: useStore.getState().currentLevel,
+
+    currentRankToDisplay: 0,
+    currentLevelToDisplay: 1,
     ranks: useStore.getState().ranks,
     setCurrentRankToDisplay: (index) => set({ currentRankToDisplay: index }),
     setCurrentLevelToDisplay: (index) => set({ currentLevelToDisplay: index }),
@@ -22,7 +23,6 @@ export const useRankDisplayStore = create<RankDisplayState>((set) => ({
 
         const lastRankIndex = state.ranks.length - 1;
         const lastLevelIndex = rank.levels.length;
-
 
         if (state.currentRankToDisplay === lastRankIndex && state.currentLevelToDisplay === lastLevelIndex) {
             // Достигнут последний ранг и последний уровень, ничего не делаем
