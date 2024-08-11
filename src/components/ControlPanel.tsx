@@ -8,7 +8,7 @@ import faqIcon from '../assets/images/faq-icon.svg'
 import {colors} from "../styles/styles";
 import {useStore} from "../store/store";
 
-const SettingPanel: React.FC = () => {
+const ControlPanel: React.FC = () => {
     const {balance} = useStore();
     return (
         <Container>
@@ -60,4 +60,4 @@ const Balance = styled.span`
   font-size: 18px; 
   font-weight: bold;
 `;
-export default SettingPanel;
+export default ControlPanel;
