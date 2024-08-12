@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 
 import {Navigation} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -6,14 +6,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import styled from 'styled-components';
 import {useStore} from "../store/store";
-
 import SwiperButtonNext from "./SwiperButtonNext";
 import SwiperButtonPrev from "./SiperButtonPrev";
 import {useRankDisplayStore} from "../store/rankDisplayStore";
 
-
 const RankList: React.FC = () => {
     const {currentRank} = useStore();
+    const swiperRef = useRef<any>(null); // Создаем реф для доступа к Swiper
 
     const {currentRankToDisplay, ranks} = useRankDisplayStore();
     const rankName = ranks[currentRank].name
@@ -21,16 +20,17 @@ const RankList: React.FC = () => {
     return (
         <RankContainer>
             <Swiper
-                spaceBetween={0}
-                slidesPerView={3}
+                spaceBetween={5}
+                slidesPerView={5}
                 centeredSlides={true}
                 modules={[Navigation]}
                 initialSlide={currentRankToDisplay}
+                ref={swiperRef}
             >
                 {ranks.map((rank) => (
                     <SwiperSlide key={rank.name}>
-                        <RankItem isActive={rank.name === rankName}>
-                            <img src={rank.image}/>
+                        <RankItem currentRank={currentRankToDisplay} isActive={rank.name === rankName}>
+                            <img src={rank.image} alt=""/>
                         </RankItem>
                     </SwiperSlide>
                 ))}
@@ -46,34 +46,40 @@ const RankContainer = styled.div`
   width: 100%;
 `;
 
-const RankItem = styled.div<{ isActive: boolean }>`
+const RankItem = styled.div<{ currentRank: number, isActive: boolean }>`
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   border-radius: 8px;
   transition: background 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  position: relative;
+  filter: ${props => props.isActive ? 'none' : 'brightness(0.5) grayscale(0.9)'};
+  width: 100%;
 
-  img {
-    width: 80px;
-    height: 80px;
+
+
+  & img {
+    width: 100%;
   }
-
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     background: rgba(105, 255, 147, 0.5);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    filter: blur(8px);
     opacity: ${props => props.isActive ? 1 : 0};
+    filter: blur(10px);
     transition: opacity 0.3s;
     z-index: -1;
   }
+  
+  
+
 
 `;
 

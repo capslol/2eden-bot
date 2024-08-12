@@ -43,27 +43,34 @@ const GlobalStyles = createGlobalStyle`
   .swiper-button-next::after, .swiper-button-prev::after {
     display: none;
   }
+  
   .swiper-wrapper{
     display: flex;
     align-items: center;
     height: 200px;
+    position: relative;
+    justify-content: center;
   }
-  .swiper-slide {
-    display: flex;
-    align-items: center; /* Выравнивание по вертикали внутри слайда */
-    justify-content: center; /* Выравнивание по горизонтали внутри слайда (по желанию) */
-  }
+
   .swiper-slide {
     height: 300px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 200ms linear;
-    transform: scale(0.8);
+    position: relative;
+    width: 100%;
+    
+
   }
+
   &.swiper-slide-active{
-    transform: scale(1.5) !important;
+    transform: scale(1.2) !important;
   }
+  
+
+
 
 
 

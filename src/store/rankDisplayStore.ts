@@ -10,6 +10,8 @@ interface RankDisplayState {
     upgradeLevelOrRank: () => void;
 }
 
+
+
 export const useRankDisplayStore = create<RankDisplayState>((set) => ({
 
     currentRankToDisplay: 0,

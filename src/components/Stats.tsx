@@ -17,11 +17,13 @@ const Stats: React.FC = () => {
         setCurrentLevelToDisplay(currentLevel)
     },[currentRank,currentLevel] )
 
+
     const isUpgradeActive = balance >= 2000 &&
-        (currentRank < ranks.length - 1 || currentLevel < ranks[currentRank].levels.length);
+        (currentRank < ranks.length - 1 || currentLevel < ranks[currentRank].levels.length) &&
+        (currentRank === currentRankToDisplay && currentLevel === currentLevelToDisplay);
+
     const handleClick = () => {
         upgradeRank()
-        // upgradeLevelOrRank()
     };
     return (
         <StatsContainer>
