@@ -71,8 +71,6 @@ const ranks: UserRank[] = [
         name: 'Archbishop',
         levels: [
             { impactForce: 550, maxEnergy: 5000, recovery: 25 },
-            { impactForce: 600, maxEnergy: 5500, recovery: 30 },
-            { impactForce: 650, maxEnergy: 6000, recovery: 35 },
         ],
         image: ArchbishopIcon
     },
