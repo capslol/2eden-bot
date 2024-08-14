@@ -11,12 +11,15 @@ import SwiperButtonPrev from "./SiperButtonPrev";
 import {useRankDisplayStore} from "../store/rankDisplayStore";
 
 const RankList: React.FC = () => {
-    const {currentRank} = useStore();
+    const ranks = useStore((state) => state.ranks);
+    const currentRank = useStore((state) => state.currentRank);
     const swiperRef = useRef<any>(null); // Создаем реф для доступа к Swiper
 
-    const {currentRankToDisplay, ranks} = useRankDisplayStore();
+    const {currentRankToDisplay } = useRankDisplayStore();
     const rankName = ranks[currentRank].name
-
+    useEffect(() => {
+        console.log('RankList')
+    }, )
     return (
         <RankContainer>
             <Swiper
@@ -57,8 +60,6 @@ const RankItem = styled.div<{ currentRank: number, isActive: boolean }>`
   filter: ${props => props.isActive ? 'none' : 'brightness(0.5) grayscale(0.9)'};
   width: 100%;
 
-
-
   & img {
     width: 100%;
   }
@@ -77,9 +78,6 @@ const RankItem = styled.div<{ currentRank: number, isActive: boolean }>`
     transition: opacity 0.3s;
     z-index: -1;
   }
-  
-  
-
 
 `;
 

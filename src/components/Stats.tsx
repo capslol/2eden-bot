@@ -8,14 +8,27 @@ import CoinIconBlack from '../assets/images/coin-icon-black.svg'
 
 
 const Stats: React.FC = () => {
-    const {balance, currentRank, currentLevel, upgradeRank, swiperInstance} = useStore();
-    const {ranks, currentLevelToDisplay, currentRankToDisplay,setCurrentRankToDisplay,setCurrentLevelToDisplay, upgradeLevelOrRank} = useRankDisplayStore();
+    const balance = useStore((state) => state.balance);
+    const currentRank = useStore((state) => state.currentRank);
+    const currentLevel = useStore((state) => state.currentLevel);
+    const upgradeRank = useStore((state) => state.upgradeRank);
+    const ranks = useStore((state) => state.ranks);
+    const currentRankToDisplay = useRankDisplayStore((state) => state.currentRankToDisplay);
+    const currentLevelToDisplay = useRankDisplayStore((state) => state.currentLevelToDisplay);
+    const setCurrentRankToDisplay = useRankDisplayStore((state) => state.setCurrentRankToDisplay);
+    const setCurrentLevelToDisplay = useRankDisplayStore((state) => state.setCurrentLevelToDisplay);
+
+
     const rank = ranks[currentRankToDisplay];
 
     useEffect(() => {
         setCurrentRankToDisplay(currentRank)
         setCurrentLevelToDisplay(currentLevel)
     },[currentRank,currentLevel] )
+
+    useEffect(() => {
+        console.log('Stats')
+    })
 
 
     const isUpgradeActive = balance >= 2000 &&

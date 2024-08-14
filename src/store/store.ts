@@ -88,10 +88,10 @@ export const useStore = create<StoreState>((set, get) => ({
     setCurrentRank: (rankIndex) => set({ currentRank: rankIndex }),
     setCurrentLevel: (level) => set({ currentLevel: level }),
     increaseBalance: () => set((state) => {
-        const { balance, ranks, currentRank, currentLevel } = state;
-        const impactForce = ranks[currentRank].levels[currentLevel - 1].impactForce;
+        const { balance} = state;
+        // const impactForce = ranks[currentRank].levels[currentLevel - 1].impactForce;
         return {
-            balance: balance + get().tapPower + impactForce
+            balance: balance + 1000
         };
     }),
     upgradeRank: () => set((state) => {

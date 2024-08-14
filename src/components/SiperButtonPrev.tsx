@@ -9,6 +9,10 @@ const SwiperButtonPrev: React.FC = () => {
     const swiper = useSwiper();
     const {setSwiperInstance} = useStore()
 
+    useEffect(() => {
+        console.log('SwiperButtonPrev')
+    })
+
 
 
     useEffect(() => {

@@ -10,8 +10,12 @@ interface ProgressBarProps {
 }
 
 const ProgressBar: React.FC = () => {
-    const {ranks, currentRank, currentLevel, upgradeRank} = useStore();
-    const {currentRankToDisplay, currentLevelToDisplay, setCurrentLevelToDisplay,setCurrentRankToDisplay} = useRankDisplayStore();
+    const currentRank = useStore((state) => state.currentRank);
+    const currentLevel = useStore((state) => state.currentLevel);
+    const ranks = useStore((state) => state.ranks);
+    const currentRankToDisplay = useRankDisplayStore((state) => state.currentRankToDisplay);
+    const currentLevelToDisplay = useRankDisplayStore((state) => state.currentLevelToDisplay);
+
 
 
     const [totalLevels, setTotalLevels] = useState<number>(0);
@@ -29,13 +33,16 @@ const ProgressBar: React.FC = () => {
 
     useEffect(() => {
         const rank = ranks[currentRank];
-        console.log(rank)
         if (rank) {
             setTotalLevels(rank.levels.length);
             setCurrentLevelToShow(currentLevel);
 
         }
     }, [currentRank, currentLevel])
+
+    useEffect(() => {
+        console.log('ProgressBar')
+    })
 
 
     const segments = Array.from({length: totalLevels}, (_, index) => {

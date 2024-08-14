@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {fonts, colors, Container} from "../styles/styles";
 import backIcon from '../assets/images/back-icon.svg';
 import MenuIcon from '../assets/images/Menu.svg';
 
 const Header: React.FC = () => {
+
+    useEffect(() => {
+        console.log('Header')
+    })
+
     return (
 
         <HeaderContainer>

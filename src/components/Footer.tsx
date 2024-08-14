@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import { colors} from "../styles/styles";
 
@@ -9,6 +9,9 @@ import TasksIcon from '../assets/images/footer/tasks-icon.svg';
 import HomeIcon from '../assets/images/footer/home-icon.svg';
 
 const Footer: React.FC = () => {
+    useEffect(() => {
+        console.log('ControlPanel')
+    })
     return (
         <FooterContainer>
             <Icon src={HomeIcon}/>

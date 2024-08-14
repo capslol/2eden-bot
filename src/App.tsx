@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import ControlPanel from "./components/ControlPanel";
 
 const App: React.FC = () => {
+
     return (
         <>
             <GlobalStyles/>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useSwiper} from 'swiper/react';
 import styled from "styled-components";
 import rightArrow from "../assets/images/arrow_right.svg";
@@ -6,6 +6,10 @@ import {useRankDisplayStore} from "../store/rankDisplayStore";
 
 const SwiperButtonNext: React.FC = () => {
     const swiper = useSwiper();
+
+    useEffect(() => {
+        console.log('SwiperButtonNext')
+    })
 
     const {currentRankToDisplay,currentLevelToDisplay,ranks,setCurrentLevelToDisplay, setCurrentRankToDisplay } = useRankDisplayStore();
     const handlerGoNext = () => {
